@@ -102,6 +102,11 @@
     },
     "shared": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "libs/shared",
       "sourceRoot": "libs/shared/src",
       "prefix": "lib",

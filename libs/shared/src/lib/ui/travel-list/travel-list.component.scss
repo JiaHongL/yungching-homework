@@ -1,0 +1,113 @@
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 5px;
+  column-gap: 10px;
+  row-gap: 10px;
+
+  .card {
+    display: flex;
+    flex-flow: column;
+    background-color: #fae3d9;
+
+    .card-cover-wrapper {
+      position: relative;
+
+      .checkbox {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        width: 30px;
+        height: 30px;
+        &:checked {
+          accent-color: #17a2b8;
+        }
+      }
+
+      .cover {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .name {
+        position: absolute;
+        bottom: 40px;
+        left: 10px;
+        padding: 5px;
+        color: white;
+        font-size: 22px;
+        font-weight: 500;
+        text-shadow: black 0.1em 0.1em 0.2em;
+      }
+
+      .distric {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        padding: 5px;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        text-shadow: black 0.1em 0.1em 0.2em;
+      }
+    }
+
+    .card-body {
+      padding: 10px;
+
+      .tags {
+        padding-left: 10px;
+        margin-bottom: 5px;
+
+        i {
+          padding-right: 5px;
+        }
+
+        .badge {
+          font-size: 0.8rem;
+          padding-right: 0.6em;
+          padding-left: 0.6em;
+          border-radius: 10rem;
+          color: #fff;
+          background-color: #17a2b8;
+          margin-right: 2px;
+        }
+      }
+
+      .address {
+        padding-left: 10px;
+        margin-bottom: 5px;
+
+        i {
+          padding-right: 5px;
+        }
+      }
+
+      .phone {
+        padding-left: 10px;
+        margin-bottom: 5px;
+
+        i {
+          padding-right: 5px;
+        }
+      }
+
+      .email {
+        padding-left: 10px;
+        margin-bottom: 5px;
+
+        i {
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: 992px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

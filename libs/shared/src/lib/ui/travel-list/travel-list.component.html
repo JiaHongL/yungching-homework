@@ -1,0 +1,30 @@
+<div class="list">
+  <div class="card" *ngFor="let item of mockData.data">
+    <div class="card-cover-wrapper">
+      <input class="checkbox" type="checkbox">
+      <img class="cover" [src]="item.images[0].src" />
+      <span class="name">{{ item.name }}</span>
+      <span class="distric">{{ item.distric }}</span>
+    </div>
+    <div class="card-body">
+      <div class="tags">
+        <i class="fa-solid fa-tags"></i>
+        <ng-container *ngFor="let category of item.category">
+          <span class="badge">{{ category.name }}</span>
+        </ng-container>
+      </div>
+      <div class="address">
+        <i class="fa-solid fa-location-dot"></i>
+        {{ item.address }}
+      </div>
+      <div class="phone">
+        <i class="fa-solid fa-phone"></i>
+        {{ item.tel }}
+      </div>
+      <div class="email">
+        <i class="fa-solid fa-envelope"></i>
+        {{ item.email || "暫無資訊" }}
+      </div>
+    </div>
+  </div>
+</div>
