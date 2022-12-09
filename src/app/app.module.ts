@@ -14,6 +14,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { SearchComponent } from './pages/search/search.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HeaderComponent } from './layout/header/header.component';
     RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     SharedModule
   ],
   providers: [],

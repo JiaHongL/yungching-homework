@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { TravelService } from 'libs/shared/src/lib/services/travel.service';
 
 @Component({
   selector: 'app-search',
@@ -33,14 +34,23 @@ export class SearchComponent {
     select: 2,
   });
 
-  constructor(private fb: FormBuilder) {
-
+  constructor(private fb: FormBuilder, private travelService: TravelService) {
     setTimeout(() => {
       this.total = 200;
       this.itemsPerPage = 10;
       this.currentPage = 5;
-    },4000);
+    }, 4000);
 
+    this.travelService.getAttractions().subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+    });
+    this.travelService.getAttractionCategories().subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+    });
   }
 
   addFavorite() {
@@ -52,6 +62,6 @@ export class SearchComponent {
   }
 
   pageChange(page: number): void {
-    console.log('pageChange',page);
+    console.log('pageChange', page);
   }
 }
