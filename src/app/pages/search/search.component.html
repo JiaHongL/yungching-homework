@@ -18,4 +18,9 @@
 
 <lib-travel-list></lib-travel-list>
 
-<lib-pagination></lib-pagination>
+<lib-pagination
+  [(currentPage)]="currentPage"
+  [totalItems]="total"
+  [itemsPerPage]="itemsPerPage"
+  (pageChange)="pageChange($event)"
+></lib-pagination>

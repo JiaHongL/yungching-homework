@@ -7,31 +7,51 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
+  currentPage = 1;
 
-  options = [{
-    text:'選項一',
-    value:1
-  },{
-    text:'選項二',
-    value:2
-  },{
-    text:'選項三',
-    value:3
-  }]
+  total = 200;
+
+  itemsPerPage = 10;
+
+  options = [
+    {
+      text: '選項一',
+      value: 1,
+    },
+    {
+      text: '選項二',
+      value: 2,
+    },
+    {
+      text: '選項三',
+      value: 3,
+    },
+  ];
 
   form: FormGroup = this.fb.group({
-    testInput:'123',
-    select:2
-  })
+    testInput: '123',
+    select: 2,
+  });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+
+    setTimeout(() => {
+      this.total = 200;
+      this.itemsPerPage = 10;
+      this.currentPage = 5;
+    },4000);
+
+  }
 
   addFavorite() {
     console.log('add....');
   }
 
-  selectChange(value:any){
-    console.log('value',value);
+  selectChange(value: any) {
+    console.log('value', value);
   }
 
+  pageChange(page: number): void {
+    console.log('pageChange',page);
+  }
 }

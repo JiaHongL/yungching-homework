@@ -1,51 +1,45 @@
-<div
-  class="pagination"
->
-  <button
-    class="page-item"
-  >
+<div class="pagination" *ngIf="totalItems > 0">
+  <button class="page-item" (click)="decrementCurrentPage(1)">
     <a>上一頁</a>
   </button>
 
   <!-- 顯示省略 開始 -->
   <a
     class="page-item"
-    >
+    *ngIf="currentPage !== 1 && pageGroupList.length > this.displayRange"
+    (click)="decrementCurrentPage(3)"
+  >
     ...
   </a>
   <!-- 顯示省略 結束 -->
 
   <!-- 顯示的頁碼群組 開始 -->
-  <a
-    class="page-item"
-  >
-    <span>5</span>
-  </a>
-  <a
-    class="page-item active"
-  >
-    <span>6</span>
-  </a>
-  <a
-    class="page-item"
-  >
-    <span>7</span>
-  </a>
+  <ng-container *ngFor="let item of pageGroupList">
+    <a
+      class="page-item"
+      [ngClass]="{ active: currentPage === item?.value }"
+      *ngIf="canShowPage(item.value)"
+      (click)="clickPageNum(item.value)"
+    >
+      <span>{{ item.value }}</span>
+    </a>
+  </ng-container>
   <!-- 顯示的頁碼群組 結束 -->
-
 
   <!-- 顯示省略 開始 -->
   <a
     class="page-item"
-    >
+    *ngIf="
+      !(currentPage === pageGroupList.length) &&
+      pageGroupList.length > this.displayRange
+    "
+    (click)="incrementCurrentPage(3)"
+  >
     ...
   </a>
   <!-- 顯示省略 結束 -->
 
-  <button
-    class="page-item"
-  >
+  <button class="page-item" (click)="incrementCurrentPage(1)">
     <a>下一頁</a>
   </button>
-
 </div>
