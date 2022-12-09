@@ -2,7 +2,7 @@
   <div class="card" *ngFor="let item of travelData">
     <div class="card-cover-wrapper">
       <input class="checkbox" type="checkbox">
-      <img class="cover" [src]="item.images[0]?.src" />
+      <img class="cover" [src]="item.images[0]?.src" onerror="this.onerror=null;this.src='https://placeimg.com/300/300/animals';" />
       <span class="name">{{ item.name }}</span>
       <span class="distric">{{ item.distric }}</span>
     </div>
