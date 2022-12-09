@@ -1,6 +1,6 @@
 import { finalize, startWith } from 'rxjs/operators';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { SelectOption } from 'libs/shared/src/lib/ui/form/select/select-option.models';
@@ -14,7 +14,6 @@ import { BlockViewService } from 'libs/shared/src/lib/ui/block-view/block-view.s
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
-
   travelData: any[] = [];
 
   currentPage = 1;
@@ -25,40 +24,35 @@ export class SearchComponent {
 
   options: SelectOption[] = [];
 
-  form: FormGroup = this.fb.group({
-    testInput: '123',
-    categoryIds: null,
+  categoryIdFormControl: FormControl<number | string> = new FormControl('', {
+    nonNullable: true,
   });
 
   constructor(
     private route: ActivatedRoute,
     private blockViewService: BlockViewService,
-    private fb: FormBuilder,
     private travelService: TravelService
   ) {
-
     this.options = this.route.snapshot.data['categories'];
 
-    this.form
-      .get('categoryIds')
-      ?.valueChanges
-      .pipe(
-        startWith(null)
-      )
+    this.categoryIdFormControl?.valueChanges
+      .pipe(startWith(null))
       .subscribe(() => {
-        this.currentPage =1;
+        this.currentPage = 1;
         this.search();
       });
   }
 
-  search():void{
+  search(): void {
+
     this.blockViewService.show();
     this.travelData = [];
+
     this.travelService
-      .getAttractions(this.currentPage, this.form.get('categoryIds')?.value)
+      .getAttractions(this.currentPage, this.categoryIdFormControl.value)
       .pipe(finalize(() => this.blockViewService.hide()))
       .subscribe({
-        next: (res) => {
+        next: (res: any) => {
           this.total = res.total;
           this.travelData = res.data;
         },

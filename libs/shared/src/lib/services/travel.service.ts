@@ -12,9 +12,9 @@ export class TravelService {
 
   constructor(private http: HttpClient) {}
 
-  getAttractions(page = 1, categoryIds: number) {
-    return this.http.get<any>(this.api + 'Attractions/All', {
-      params: {
+  getAttractions(page = 1, categoryIds: number | string) {
+    return this.http.get(this.api + 'Attractions/All', {
+      params:{
         page,
         categoryIds,
       },
@@ -41,12 +41,11 @@ export class TravelService {
       );
   }
 
-  addFavorites(){
+  addFavorites() {
     // do something...
   }
 
-  removeFavorites(){
+  removeFavorites() {
     // do something...
   }
-
 }
