@@ -1,6 +1,8 @@
-<lib-select></lib-select>
+<form [formGroup]="form">
+  <lib-text-input formControlName="testInput"></lib-text-input>
+</form>
 
-<lib-text-input></lib-text-input>
+<lib-select></lib-select>
 
 <lib-button class="button-success" (buttonClick)="addFavorite()">
   新增到我的最愛

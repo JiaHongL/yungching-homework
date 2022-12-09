@@ -1,1 +1,8 @@
-<input class="yc-input" type="text">
+<input
+  #myInput
+  class="yc-input"
+  type="text"
+  [disabled]="disabled"
+  (input)="onInput(myInput.value)"
+  (blur)="onBlur()"
+/>

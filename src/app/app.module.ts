@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from 'libs/shared/src/lib/shared.module';
@@ -26,6 +27,7 @@ import { HeaderComponent } from './layout/header/header.component';
     BrowserModule,
     RouterModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     SharedModule
   ],
   providers: [],
