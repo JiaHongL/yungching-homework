@@ -1,6 +1,14 @@
-<select class="yc-select">
-  <option>--請選擇--</option>
-  <option>選項一</option>
-  <option>選項二</option>
-  <option>選項三</option>
+<select
+  class="yc-select"
+  #select
+  [formControl]="control"
+  (change)="selectOnChange(control.value)"
+>
+  <option
+    *ngFor="let option of options"
+    [ngValue]="option.value"
+    [selected]="getSelected(option)"
+  >
+    {{ option.text }}
+  </option>
 </select>

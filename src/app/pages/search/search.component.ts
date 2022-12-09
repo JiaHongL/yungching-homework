@@ -8,8 +8,20 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class SearchComponent {
 
+  options = [{
+    text:'選項一',
+    value:1
+  },{
+    text:'選項二',
+    value:2
+  },{
+    text:'選項三',
+    value:3
+  }]
+
   form: FormGroup = this.fb.group({
-    testInput:'123'
+    testInput:'123',
+    select:2
   })
 
   constructor(private fb: FormBuilder) {}
@@ -17,4 +29,9 @@ export class SearchComponent {
   addFavorite() {
     console.log('add....');
   }
+
+  selectChange(value:any){
+    console.log('value',value);
+  }
+
 }

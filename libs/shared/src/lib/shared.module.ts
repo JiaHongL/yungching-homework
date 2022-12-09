@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -19,10 +20,11 @@ const formComponents = [
     ...formComponents,
     ButtonComponent,
     PaginationComponent,
-    TravelListComponent
+    TravelListComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     ...formComponents,
