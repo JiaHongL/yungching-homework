@@ -1,0 +1,63 @@
+:host {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.spinner > div {
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border-radius: 100%;
+  display: inline-block;
+  animation: sk-bouncedelay 1.7s infinite ease-in-out both;
+  margin-right: 5px;
+}
+
+.spinner--orange > div {
+  background: #ff9a27;
+}
+
+.spinner--cyan > div {
+  background: #3fcca1;
+}
+
+.spinner--yellow > div {
+  background: #f2d915;
+}
+
+.spinner .spinner__item1 {
+  animation-delay: -0.6s;
+}
+
+.spinner .spinner__item2 {
+  animation-delay: -0.4s;
+}
+
+.spinner .spinner__item3 {
+  animation-delay: -0.2s;
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

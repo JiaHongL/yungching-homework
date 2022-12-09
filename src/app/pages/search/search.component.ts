@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SelectOption } from 'libs/shared/src/lib/ui/form/select/select-option.models';
 
 import { TravelService } from 'libs/shared/src/lib/services/travel.service';
+import { BlockViewService } from 'libs/shared/src/lib/ui/block-view/block-view.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class SearchComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private blockViewService:BlockViewService,
     private fb: FormBuilder,
     private travelService: TravelService
   ) {
@@ -45,6 +47,12 @@ export class SearchComponent {
         console.log(res);
       },
     });
+
+    this.blockViewService.show();
+
+    setTimeout(() => {
+      this.blockViewService.hide();
+    },5000);
 
   }
 
