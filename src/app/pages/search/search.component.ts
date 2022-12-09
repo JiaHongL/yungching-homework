@@ -1,3 +1,4 @@
+import { finalize, startWith } from 'rxjs/operators';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -7,7 +8,6 @@ import { SelectOption } from 'libs/shared/src/lib/ui/form/select/select-option.m
 import { TravelService } from 'libs/shared/src/lib/services/travel.service';
 import { BlockViewService } from 'libs/shared/src/lib/ui/block-view/block-view.service';
 
-
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -15,45 +15,54 @@ import { BlockViewService } from 'libs/shared/src/lib/ui/block-view/block-view.s
 })
 export class SearchComponent {
 
+  travelData: any[] = [];
 
   currentPage = 1;
 
-  total = 200;
+  total = 0;
 
   itemsPerPage = 10;
 
-  options:SelectOption[] = [];
+  options: SelectOption[] = [];
 
   form: FormGroup = this.fb.group({
     testInput: '123',
-    categoryIds: 0,
+    categoryIds: null,
   });
 
   constructor(
     private route: ActivatedRoute,
-    private blockViewService:BlockViewService,
+    private blockViewService: BlockViewService,
     private fb: FormBuilder,
     private travelService: TravelService
   ) {
 
     this.options = this.route.snapshot.data['categories'];
 
-    this.form.get('categoryIds')?.setValue(
-      this.options[0].value
-    );
+    this.form
+      .get('categoryIds')
+      ?.valueChanges
+      .pipe(
+        startWith(null)
+      )
+      .subscribe(() => {
+        this.currentPage =1;
+        this.search();
+      });
+  }
 
-    this.travelService.getAttractions().subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-    });
-
+  search():void{
     this.blockViewService.show();
-
-    setTimeout(() => {
-      this.blockViewService.hide();
-    },5000);
-
+    this.travelData = [];
+    this.travelService
+      .getAttractions(this.currentPage, this.form.get('categoryIds')?.value)
+      .pipe(finalize(() => this.blockViewService.hide()))
+      .subscribe({
+        next: (res) => {
+          this.total = res.total;
+          this.travelData = res.data;
+        },
+      });
   }
 
   addFavorite() {
@@ -64,7 +73,7 @@ export class SearchComponent {
     console.log('value', value);
   }
 
-  pageChange(page: number): void {
-    console.log('pageChange', page);
+  pageChange(): void {
+    this.search();
   }
 }

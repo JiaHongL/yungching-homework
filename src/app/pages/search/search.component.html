@@ -5,7 +5,6 @@
   {{form.get('categoryIds')?.value}}
 </form>
 
-
 <lib-button class="button-success" (buttonClick)="addFavorite()">
   新增到我的最愛
   <i class="fa-solid fa-plus"></i>
@@ -16,11 +15,11 @@
   <i class="fa-solid fa-trash-can"></i>
 </lib-button>
 
-<lib-travel-list></lib-travel-list>
+<lib-travel-list [travelData]="travelData"></lib-travel-list>
 
 <lib-pagination
   [(currentPage)]="currentPage"
   [totalItems]="total"
   [itemsPerPage]="itemsPerPage"
-  (pageChange)="pageChange($event)"
+  (pageChange)="pageChange()"
 ></lib-pagination>

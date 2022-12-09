@@ -12,11 +12,11 @@ export class TravelService {
 
   constructor(private http: HttpClient) {}
 
-  getAttractions(page = 1, categoryIds = []) {
+  getAttractions(page = 1, categoryIds: number) {
     return this.http.get<any>(this.api + 'Attractions/All', {
       params: {
         page,
-        categoryIds: categoryIds?.toString(),
+        categoryIds,
       },
     });
   }
