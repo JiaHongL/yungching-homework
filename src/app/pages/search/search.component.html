@@ -1,6 +1,25 @@
+<select class="yc-select">
+  <option>--請選擇--</option>
+  <option>選項一</option>
+  <option>選項二</option>
+  <option>選項三</option>
+</select>
+
+<input class="yc-input" type="text">
+
+<button class="yc-button button-success">
+  新增到我的最愛
+  <i class="fa-solid fa-plus"></i>
+</button>
+<button class="yc-button button-error">
+  從我的最愛移除
+  <i class="fa-solid fa-trash-can"></i>
+</button>
+
 <div class="list">
   <div class="card" *ngFor="let item of mockData.data">
     <div class="card-cover-wrapper">
+      <input class="checkbox" type="checkbox">
       <img class="cover" [src]="item.images[0].src" />
       <span class="name">{{ item.name }}</span>
       <span class="distric">{{ item.distric }}</span>
@@ -26,4 +45,56 @@
       </div>
     </div>
   </div>
+</div>
+
+<div
+  class="pagination"
+>
+  <button
+    class="page-item"
+  >
+    <a>上一頁</a>
+  </button>
+
+  <!-- 顯示省略 開始 -->
+  <a
+    class="page-item"
+    >
+    ...
+  </a>
+  <!-- 顯示省略 結束 -->
+
+  <!-- 顯示的頁碼群組 開始 -->
+  <a
+    class="page-item"
+  >
+    <span>5</span>
+  </a>
+  <a
+    class="page-item active"
+  >
+    <span>6</span>
+  </a>
+  <a
+    class="page-item"
+  >
+    <span>7</span>
+  </a>
+  <!-- 顯示的頁碼群組 結束 -->
+
+
+  <!-- 顯示省略 開始 -->
+  <a
+    class="page-item"
+    >
+    ...
+  </a>
+  <!-- 顯示省略 結束 -->
+
+  <button
+    class="page-item"
+  >
+    <a>下一頁</a>
+  </button>
+
 </div>
