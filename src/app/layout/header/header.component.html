@@ -1,0 +1,14 @@
+<div class="header">
+  <div class="logo">
+    <a>LOGO</a>
+    <a class="menu-button">
+      <i class="fas fa-bars" (click)="isShowMenu=!isShowMenu"></i>
+    </a>
+  </div>
+  <nav>
+    <ul class="menu" [class.show]="isShowMenu">
+      <li><a [routerLink]="['/search']" routerLinkActive="router-link-active" >查詢列表</a></li>
+      <li><a [routerLink]="['/favorites']" routerLinkActive="router-link-active">我的最愛</a></li>
+    </ul>
+  </nav>
+</div>
