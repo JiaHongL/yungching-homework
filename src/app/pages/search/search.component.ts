@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
+import { SelectOption } from 'libs/shared/src/lib/ui/form/select/select-option.models';
+
 import { TravelService } from 'libs/shared/src/lib/services/travel.service';
+
 
 @Component({
   selector: 'app-search',
@@ -8,49 +13,39 @@ import { TravelService } from 'libs/shared/src/lib/services/travel.service';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
+
+
   currentPage = 1;
 
   total = 200;
 
   itemsPerPage = 10;
 
-  options = [
-    {
-      text: '選項一',
-      value: 1,
-    },
-    {
-      text: '選項二',
-      value: 2,
-    },
-    {
-      text: '選項三',
-      value: 3,
-    },
-  ];
+  options:SelectOption[] = [];
 
   form: FormGroup = this.fb.group({
     testInput: '123',
-    select: 2,
+    categoryIds: 0,
   });
 
-  constructor(private fb: FormBuilder, private travelService: TravelService) {
-    setTimeout(() => {
-      this.total = 200;
-      this.itemsPerPage = 10;
-      this.currentPage = 5;
-    }, 4000);
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private travelService: TravelService
+  ) {
+
+    this.options = this.route.snapshot.data['categories'];
+
+    this.form.get('categoryIds')?.setValue(
+      this.options[0].value
+    );
 
     this.travelService.getAttractions().subscribe({
       next: (res) => {
         console.log(res);
       },
     });
-    this.travelService.getAttractionCategories().subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-    });
+
   }
 
   addFavorite() {

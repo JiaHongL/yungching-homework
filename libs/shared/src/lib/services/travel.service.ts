@@ -33,7 +33,7 @@ export class TravelService {
         map((data) =>
           data.map((v: { id: number; name: string }) => {
             return {
-              id: v.id,
+              value: v.id,
               text: v.name,
             };
           })
