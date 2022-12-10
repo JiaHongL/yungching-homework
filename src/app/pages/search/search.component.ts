@@ -1,6 +1,6 @@
 import { finalize, startWith } from 'rxjs/operators';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { SelectOption } from 'libs/shared/src/lib/ui/form/select/select-option.models';
@@ -14,6 +14,9 @@ import { BlockViewService } from 'libs/shared/src/lib/ui/block-view/block-view.s
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
+
+  selectedTravelList: any[] = [];
+
   travelData: any[] = [];
 
   currentPage = 1;
@@ -33,6 +36,7 @@ export class SearchComponent {
     private blockViewService: BlockViewService,
     private travelService: TravelService
   ) {
+
     this.options = this.route.snapshot.data['categories'];
 
     this.categoryIdFormControl?.valueChanges
@@ -41,6 +45,7 @@ export class SearchComponent {
         this.currentPage = 1;
         this.search();
       });
+
   }
 
   search(): void {
@@ -57,14 +62,19 @@ export class SearchComponent {
           this.travelData = res.data;
         },
       });
+
   }
 
   addFavorite() {
-    console.log('add....');
-  }
 
-  selectChange(value: any) {
-    console.log('value', value);
+    if(!this.selectedTravelList.length) return;
+
+    this.travelService.addFavorites(this.selectedTravelList);
+
+    alert('新增成功');
+
+    this.selectedTravelList = [];
+
   }
 
   pageChange(): void {

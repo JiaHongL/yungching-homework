@@ -148,8 +148,8 @@ export class PaginationComponent {
     }
 
     this.setShowMinAndMaxPage();
-    this.pageChange.emit(this.currentPage);
     this.currentPageChange.emit(this.currentPage);
+    this.pageChange.emit(this.currentPage);
   }
 
   /**
@@ -170,8 +170,8 @@ export class PaginationComponent {
     }
 
     this.setShowMinAndMaxPage();
-    this.pageChange.emit(this.currentPage);
     this.currentPageChange.emit(this.currentPage);
+    this.pageChange.emit(this.currentPage);
   }
 
   /**
@@ -189,7 +189,7 @@ export class PaginationComponent {
     }
 
     this.setShowMinAndMaxPage();
-    this.pageChange.emit(this.currentPage);
     this.currentPageChange.emit(this.currentPage);
+    this.pageChange.emit(this.currentPage);
   }
 }

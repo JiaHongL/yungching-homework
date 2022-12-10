@@ -1,7 +1,9 @@
+<form [formGroup]="travelFormGroup">
+
 <div class="list">
-  <div class="card" *ngFor="let item of travelData">
+  <div class="card" *ngFor="let item of travelData; let i = index" formArrayName="selectedList">
     <div class="card-cover-wrapper">
-      <input class="checkbox" type="checkbox">
+      <input class="checkbox" type="checkbox" [formControlName]="i" (change)="selectChange($event,item)">
       <img class="cover" [src]="item.images[0]?.src" onerror="this.onerror=null;this.src='https://placeimg.com/300/300/animals';" />
       <span class="name">{{ item.name }}</span>
       <span class="distric">{{ item.distric }}</span>
@@ -28,3 +30,5 @@
     </div>
   </div>
 </div>
+
+</form>

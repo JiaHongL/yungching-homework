@@ -1,14 +1,20 @@
 <h1 class="page-title">查詢頁面</h1>
 
 <div class="search-area">
-    <lib-select [options]="options"  [formControl]="categoryIdFormControl" (selectChange)="selectChange($event)"></lib-select>
-    <lib-button class="button-success add-button" (buttonClick)="addFavorite()">
-      新增到我的最愛
-      <i class="fa-solid fa-plus"></i>
-    </lib-button>
+  <lib-select
+    [options]="options"
+    [formControl]="categoryIdFormControl"
+  ></lib-select>
+  <lib-button class="button-success add-button" (buttonClick)="addFavorite()">
+    新增到我的最愛 ( 已選擇：{{ selectedTravelList.length }} ) 項
+    <i class="fa-solid fa-plus"></i>
+  </lib-button>
 </div>
 
-<lib-travel-list [travelData]="travelData"></lib-travel-list>
+<lib-travel-list
+  [(selectedTravelList)]="selectedTravelList"
+  [travelData]="travelData"
+></lib-travel-list>
 
 <lib-pagination
   [(currentPage)]="currentPage"
