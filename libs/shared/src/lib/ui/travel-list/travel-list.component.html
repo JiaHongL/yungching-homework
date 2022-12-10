@@ -39,7 +39,7 @@
           <i class="fa-solid fa-envelope"></i>
           {{ item.email || "暫無資訊" }}
         </div>
-        <div class="edit-btn" (click)="edit(item)">
+        <div *ngIf="showEditBtn" class="edit-btn" (click)="edit(item)">
           <i class="fa-2xl fa-regular fa-pen-to-square"></i>
         </div>
       </div>
