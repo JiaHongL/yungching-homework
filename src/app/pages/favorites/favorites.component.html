@@ -1,8 +1,15 @@
 <h1 class="page-title">我的最愛</h1>
 
 <div class="search-area">
-  <lib-button class="button-error">
-    從我的最愛移除
+  <lib-button class="button-error" (click)="removeFavorites()">
+    從我的最愛移除 ( 已選擇：{{ selectedTravelList.length }} ) 項
     <i class="fa-solid fa-trash-can"></i>
   </lib-button>
+</div>
+
+<div *ngIf="data$ | async as travelData">
+  <lib-travel-list
+    [(selectedTravelList)]="selectedTravelList"
+    [travelData]="travelData"
+  ></lib-travel-list>
 </div>

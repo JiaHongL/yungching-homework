@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { TravelService } from '../services/travel.service';
+import { BlockViewService } from '../ui/block-view/block-view.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,10 @@ export class GetCategoriesResolver
       }[]
     >
 {
-  constructor(private travelService: TravelService) {}
+  constructor(
+    private travelService: TravelService,
+    private blockViewService: BlockViewService,
+  ) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
@@ -32,6 +36,7 @@ export class GetCategoriesResolver
       text: string;
     }[]
   > {
+    this.blockViewService.show();
     return this.travelService.getAttractionCategories();
   }
 }

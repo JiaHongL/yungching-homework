@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 
-import { map, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -45,10 +45,12 @@ export class TravelService {
       );
   }
 
-  getFavoritesObs$() {
+  getFavoritesObs$(): Observable<any[]>  {
+
     this.favoriteMap = new Map(
       JSON.parse(window.localStorage.getItem('favorites') as string)
     );
+
     return of([...this.favoriteMap.values()])
   }
 
