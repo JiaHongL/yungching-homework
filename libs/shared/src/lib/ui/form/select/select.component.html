@@ -4,6 +4,7 @@
   [formControl]="control"
   (change)="selectOnChange(control.value)"
 >
+  <option ngValue="">請選擇</option>
   <option
     *ngFor="let option of options"
     [ngValue]="option.value"
