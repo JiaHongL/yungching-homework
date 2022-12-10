@@ -82,4 +82,15 @@ export class TravelService {
 
   }
 
+  modifyFavorite(data: any) {
+
+    this.favoriteMap.set(data.id, data);
+
+    window.localStorage.setItem(
+      'favorites',
+      JSON.stringify(Array.from(this.favoriteMap.entries()))
+    );
+
+  }
+
 }

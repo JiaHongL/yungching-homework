@@ -1,34 +1,48 @@
 <form [formGroup]="travelFormGroup">
-
-<div class="list">
-  <div class="card" *ngFor="let item of travelData; let i = index" formArrayName="selectedList">
-    <div class="card-cover-wrapper">
-      <input class="checkbox" type="checkbox" [formControlName]="i" (change)="selectChange($event,item)">
-      <img class="cover" [src]="item.images[0]?.src" onerror="this.onerror=null;this.src='https://placeimg.com/300/300/animals';" />
-      <span class="name">{{ item.name }}</span>
-      <span class="distric">{{ item.distric }}</span>
-    </div>
-    <div class="card-body">
-      <div class="tags">
-        <i class="fa-solid fa-tags"></i>
-        <ng-container *ngFor="let category of item?.category">
-          <span class="badge">{{ category.name }}</span>
-        </ng-container>
+  <div class="list">
+    <div
+      class="card"
+      *ngFor="let item of travelData; let i = index"
+      formArrayName="selectedList"
+    >
+      <div class="card-cover-wrapper">
+        <input
+          class="checkbox"
+          type="checkbox"
+          [formControlName]="i"
+          (change)="selectChange($event, item)"
+        />
+        <img
+          class="cover"
+          [src]="item.images[0]?.src"
+          onerror="this.onerror=null;this.src='https://placeimg.com/300/300/animals';"
+        />
+        <span class="name">{{ item.name }}</span>
+        <span class="distric">{{ item.distric }}</span>
       </div>
-      <div class="address">
-        <i class="fa-solid fa-location-dot"></i>
-        {{ item.address }}
-      </div>
-      <div class="phone">
-        <i class="fa-solid fa-phone"></i>
-        {{ item.tel }}
-      </div>
-      <div class="email">
-        <i class="fa-solid fa-envelope"></i>
-        {{ item.email || "暫無資訊" }}
+      <div class="card-body">
+        <div class="tags">
+          <i class="fa-solid fa-tags"></i>
+          <ng-container *ngFor="let category of item?.category">
+            <span class="badge">{{ category.name }}</span>
+          </ng-container>
+        </div>
+        <div class="address">
+          <i class="fa-solid fa-location-dot"></i>
+          {{ item.address }}
+        </div>
+        <div class="phone">
+          <i class="fa-solid fa-phone"></i>
+          {{ item.tel || "暫無資訊" }}
+        </div>
+        <div class="email">
+          <i class="fa-solid fa-envelope"></i>
+          {{ item.email || "暫無資訊" }}
+        </div>
+        <div class="edit-btn" (click)="edit(item)">
+          <i class="fa-2xl fa-regular fa-pen-to-square"></i>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 </form>

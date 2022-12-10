@@ -3,6 +3,7 @@ import {
   ElementRef,
   forwardRef,
   Injector,
+  Input,
   Type,
   ViewChild,
 } from '@angular/core';
@@ -27,6 +28,16 @@ export const TEXT_INPUT_VALUE_ACCESSOR = {
 })
 export class TextInputComponent implements  ControlValueAccessor {
   @ViewChild('myInput') myInput!: ElementRef;
+
+  @Input('class') set class(value: string) {
+    const classList = value.split(' ');
+    setTimeout(() => {
+      const formFieldClassList = this.myInput.nativeElement.classList;
+      classList.forEach((className) => {
+        formFieldClassList.add(className);
+      });
+    });
+  }
 
   disabled = false;
 

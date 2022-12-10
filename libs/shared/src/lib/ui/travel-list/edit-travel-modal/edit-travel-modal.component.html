@@ -1,0 +1,63 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-header">
+    <span class="modal-title">修改旅遊景點資料</span>
+    <i class="close-icon fa-solid fa-xmark" (click)="dialogRef.close(null)"></i>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label>
+          <span class="text-red">*</span>
+          地名
+        </label>
+        <lib-text-input class="w-100" formControlName="name"></lib-text-input>
+        <span class="error-message" *ngIf="nameControl.errors?.['required']">
+          此欄位必填
+        </span>
+      </div>
+      <div class="form-group">
+        <label>
+          <span class="text-red">*</span>
+          地區
+        </label>
+        <lib-text-input class="w-100" formControlName="distric"></lib-text-input>
+        <span class="error-message" *ngIf="districControl.errors?.['required']">
+          此欄位必填
+        </span>
+      </div>
+      <div class="form-group">
+        <label>
+          <span class="text-red">*</span>
+          住址
+        </label>
+        <lib-text-input class="w-100" formControlName="address"></lib-text-input>
+        <span class="error-message" *ngIf="addressControl.errors?.['required']">
+          此欄位必填
+        </span>
+      </div>
+      <div class="form-group">
+        <label>電話</label>
+        <lib-text-input class="w-100" formControlName="tel"></lib-text-input>
+        <span class="error-message" *ngIf="telControl.errors?.['tel']">
+          請檢查電話格式是否正確
+        </span>
+      </div>
+      <div class="form-group">
+        <label>信箱</label>
+        <lib-text-input class="w-100" formControlName="email"></lib-text-input>
+        <span class="error-message" *ngIf="emailControl.errors?.['email']">
+          請檢查信箱格式是否正確
+        </span>
+      </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+
+    <lib-button class="button-error" (click)="dialogRef.close(null)">取消</lib-button>
+
+    <lib-button class="button-success" (click)="dialogRef.close(form.getRawValue())">儲存</lib-button>
+
+  </div>
+</div>

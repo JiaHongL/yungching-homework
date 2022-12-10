@@ -12,3 +12,16 @@
     border-color: #129fea;
   }
 }
+
+:host(.ng-touched.ng-valid) {
+  .yc-input {
+    border: 1px solid green;
+  }
+}
+
+:host(.ng-touched.ng-invalid) {
+  .yc-input {
+    border: 1px solid red;
+  }
+}
+

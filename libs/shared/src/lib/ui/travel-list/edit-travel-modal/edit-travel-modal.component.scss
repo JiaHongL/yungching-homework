@@ -1,0 +1,91 @@
+:host {
+  display: block;
+  background: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 80vw;
+  height: 532px;
+
+  @media screen and (min-width: 768px) {
+    width: 50vw;
+    height: 532px;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 40vw;
+    height: 532px;
+  }
+
+}
+
+.modal{
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+
+  .modal-header{
+    position: relative;
+
+    flex: 0 0 40px;
+    padding-left: 20px;
+    margin: 0 -15px;
+    border-bottom: 1px solid #e9ecef;
+
+    .modal-title{
+      font-size: 20px;
+      line-height: 40px;
+    }
+
+    .close-icon{
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 25px;
+    }
+
+  }
+
+  .modal-body{
+    flex: 1 1 auto;
+    margin: 0 -15px;
+    padding: 10px;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .modal-footer{
+    flex: 0 0 40px;
+    padding: 5px;
+    margin-bottom: -10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+}
+
+
+.form-group{
+  margin-bottom: 5px;
+
+  label{
+    .text-red{
+      color: red;
+    }
+    margin-bottom: 5px;
+  }
+
+  .error-message{
+    margin-top: 3px;
+    color: red;
+    font-size: 14px;
+  }
+
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+
+}

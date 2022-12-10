@@ -56,6 +56,7 @@
 
     .card-body {
       padding: 10px;
+      position: relative;
 
       .tags {
         padding-left: 10px;
@@ -102,6 +103,16 @@
           padding-right: 5px;
         }
       }
+
+      .edit-btn{
+        position: absolute;
+        right: 10px;
+        bottom: 20px;
+        font-size: 20px;
+        color: #204969;
+        cursor: pointer;
+      }
+
     }
   }
 

@@ -9,6 +9,8 @@
 
 <div *ngIf="data$ | async as travelData">
   <lib-travel-list
+    (editTrave)="editTrave($event)"
+    [showEditBtn]="true"
     [(selectedTravelList)]="selectedTravelList"
     [travelData]="travelData"
   ></lib-travel-list>
