@@ -7,6 +7,8 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 })
 export class ButtonComponent {
 
+  @Input() disabled = false;
+
   @ViewChild('btn', { static: true }) button!: ElementRef;
 
   @Input('class') set class(value: string) {

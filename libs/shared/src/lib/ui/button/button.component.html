@@ -1,6 +1,7 @@
 <button
   #btn
   class="yc-button"
+  [disabled]="disabled"
   (click)="buttonClick.emit({})"
 >
   <ng-content></ng-content>
