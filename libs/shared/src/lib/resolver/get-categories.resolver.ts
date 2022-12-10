@@ -5,38 +5,28 @@ import {
   ActivatedRouteSnapshot,
 } from '@angular/router';
 
-import { Observable } from 'rxjs';
-
 import { TravelService } from '../services/travel.service';
 import { BlockViewService } from '../ui/block-view/block-view.service';
+
+import { SelectOption } from '../ui/form/select/select-option.models';
+
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GetCategoriesResolver
-  implements
-    Resolve<
-      {
-        id: number;
-        text: string;
-      }[]
-    >
-{
+export class GetCategoriesResolver implements Resolve<SelectOption[]> {
   constructor(
     private travelService: TravelService,
-    private blockViewService: BlockViewService,
+    private blockViewService: BlockViewService
   ) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<
-    {
-      id: number;
-      text: string;
-    }[]
-  > {
+  ): Observable<SelectOption[]> {
     this.blockViewService.show();
     return this.travelService.getAttractionCategories();
   }
+
 }

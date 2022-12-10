@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
 import { TravelService } from 'libs/shared/src/lib/services/travel.service';
+
+import { Attraction } from 'libs/shared/src/lib/models/attraction.model';
+
 import { BehaviorSubject, mergeMap, Observable, tap } from 'rxjs';
 
 @Component({
@@ -9,11 +12,11 @@ import { BehaviorSubject, mergeMap, Observable, tap } from 'rxjs';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent {
-  selectedTravelList: any[] = [];
+  selectedTravelList: Attraction[] = [];
 
-  update$ = new BehaviorSubject<any>('');
+  update$ = new BehaviorSubject<string>('');
 
-  data$: Observable<any[]> = this.update$.asObservable().pipe(
+  data$: Observable<Attraction[]> = this.update$.asObservable().pipe(
     mergeMap(() => this.travelService.getFavoritesObs$()),
     tap(() => (this.selectedTravelList = []))
   );
@@ -22,7 +25,7 @@ export class FavoritesComponent {
     public travelService: TravelService
   ) {}
 
-  removeFavorites() {
+  removeFavorites():void {
     if (this.selectedTravelList.length) {
       return;
     }
@@ -31,7 +34,7 @@ export class FavoritesComponent {
     this.update$.next('');
   }
 
-  editTrave(data: any) {
+  editTrave(data: Attraction):void {
     this.travelService.modifyFavorite(data);
     alert('修改成功');
     this.update$.next('');

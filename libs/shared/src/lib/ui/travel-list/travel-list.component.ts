@@ -1,7 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormArray, FormGroup, FormControl, FormBuilder } from '@angular/forms';
+
 import { Dialog } from '@angular/cdk/dialog';
+
 import { EditTravelModalComponent } from './edit-travel-modal/edit-travel-modal.component';
+
+import { Attraction } from '../../models/attraction.model';
+
 import { filter } from 'rxjs';
 
 @Component({
@@ -12,42 +17,43 @@ import { filter } from 'rxjs';
 export class TravelListComponent {
   @Input() showEditBtn = false;
 
-  private _selectedTravelList: any[] = [];
+  private _selectedTravelList: Attraction[] = [];
 
-  @Input() set selectedTravelList(value: any[]) {
+  @Input() set selectedTravelList(value: Attraction[]) {
     this._selectedTravelList = value;
     this.checkSelected();
   }
 
-  get selectedTravelList(): any[] {
+  get selectedTravelList(): Attraction[] {
     return this._selectedTravelList;
   }
 
-  @Output() protected selectedTravelListChange = new EventEmitter<any[]>();
+  @Output() protected selectedTravelListChange = new EventEmitter<
+    Attraction[]
+  >();
 
   protected travelFormGroup = new FormGroup({
     selectedList: this.initFormArray(),
   });
 
-  private _travelData: any[] = [];
+  private _travelData: Attraction[] = [];
 
-  @Input() set travelData(value: any[]) {
+  @Input() set travelData(value: Attraction[]) {
     this._travelData = value;
     this.checkSelected();
   }
 
-  get travelData(): any[] {
+  get travelData(): Attraction[] {
     return this._travelData;
   }
 
-  @Output() protected editTrave = new EventEmitter<any>();
+  @Output() protected editTrave = new EventEmitter<Attraction>();
 
   constructor(private fb: FormBuilder, public dialog: Dialog) {}
 
   protected initFormArray() {
-    const selectedListFormArray: FormArray<
-      FormControl<boolean | null | unknown>
-    > = this.fb.array([]);
+    const selectedListFormArray: FormArray<FormControl<boolean | unknown>> =
+      this.fb.array([]);
 
     Array(30)
       .fill('')
@@ -78,7 +84,7 @@ export class TravelListComponent {
     });
   }
 
-  protected selectChange(event: Event, data: any): void {
+  protected selectChange(event: Event, data: Attraction): void {
     const isChecked = (<HTMLInputElement>event.target).checked;
 
     if (isChecked) {
@@ -92,8 +98,7 @@ export class TravelListComponent {
     this.selectedTravelListChange.emit(this._selectedTravelList);
   }
 
-  edit(item: any): void {
-
+  edit(item: Attraction): void {
     const dialogRef = this.dialog.open(EditTravelModalComponent, {
       data: {
         item,
@@ -101,15 +106,14 @@ export class TravelListComponent {
     });
 
     dialogRef.closed.pipe(filter((v) => !!v)).subscribe({
-      next:(formData:any)=> {
+      next: (formData:any) => {
         const newData = {
           ...item,
-          ...formData
+          ...formData,
         };
         this.editTrave.emit(newData);
       },
     });
-
-
   }
+
 }

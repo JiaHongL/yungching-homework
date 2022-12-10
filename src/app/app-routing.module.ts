@@ -21,6 +21,7 @@ const routes: Routes = [
         }
       },
       { path: 'favorites', component: FavoritesComponent },
+      { path: '**', redirectTo: 'search', pathMatch: 'full' },
     ],
   },
   { path: '**', redirectTo: 'search', pathMatch: 'full' },

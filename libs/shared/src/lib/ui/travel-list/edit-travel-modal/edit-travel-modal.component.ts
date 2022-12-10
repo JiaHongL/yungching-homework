@@ -1,6 +1,9 @@
-import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
+
+import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
+
+import { Attraction } from '../../../models/attraction.model';
 
 import { validateTel } from '../../../validate/tel.validate';
 
@@ -12,7 +15,7 @@ import { validateTel } from '../../../validate/tel.validate';
 export class EditTravelModalComponent {
   form = this.fb.group({
     name: ['', Validators.required],
-    distric:['',Validators.required],
+    distric: ['', Validators.required],
     address: ['', Validators.required],
     tel: ['', validateTel],
     email: ['', Validators.email],
@@ -39,7 +42,10 @@ export class EditTravelModalComponent {
   }
 
   constructor(
-    @Inject(DIALOG_DATA) public data: any,
+    @Inject(DIALOG_DATA)
+    public data: {
+      item: Attraction;
+    },
     public dialogRef: DialogRef,
     private fb: FormBuilder
   ) {
