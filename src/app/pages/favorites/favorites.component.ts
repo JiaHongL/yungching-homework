@@ -12,6 +12,7 @@ import { BehaviorSubject, mergeMap, Observable, tap } from 'rxjs';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent {
+
   selectedTravelList: Attraction[] = [];
 
   update$ = new BehaviorSubject<string>('');
@@ -22,11 +23,11 @@ export class FavoritesComponent {
   );
 
   constructor(
-    public travelService: TravelService
+    public travelService: TravelService,
   ) {}
 
   removeFavorites():void {
-    if (this.selectedTravelList.length) {
+    if (!this.selectedTravelList.length) {
       return;
     }
     this.travelService.removeFavorites(this.selectedTravelList);
@@ -36,7 +37,7 @@ export class FavoritesComponent {
 
   editTrave(data: Attraction):void {
     this.travelService.modifyFavorite(data);
-    alert('修改成功');
     this.update$.next('');
   }
+
 }
