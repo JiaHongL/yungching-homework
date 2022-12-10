@@ -29,6 +29,8 @@ export const TEXT_INPUT_VALUE_ACCESSOR = {
 export class TextInputComponent implements  ControlValueAccessor {
   @ViewChild('myInput') myInput!: ElementRef;
 
+  @Input() placeholder = '';
+
   @Input('class') set class(value: string) {
     const classList = value.split(' ');
     setTimeout(() => {
