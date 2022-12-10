@@ -24,7 +24,7 @@ export class SearchComponent {
 
   total = 0;
 
-  itemsPerPage = 10;
+  itemsPerPage = 30;
 
   options: SelectOption[] = [];
 
