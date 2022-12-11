@@ -1,4 +1,4 @@
 export const environment = {
-  apiUrl:'https://cors-anywhere.herokuapp.com/https://www.travel.taipei/open-api',
+  apiUrl:'https://web-production-6524.up.railway.app/https://www.travel.taipei/open-api',
   production: true
 };
